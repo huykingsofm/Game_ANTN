@@ -1,0 +1,49 @@
+﻿Hướng dẫn viết dữ liệu file game so tài đoán chữ
+
+I. Tạo một file bất kỳ, mở nó bằng notepad. Ví dụ : game1.game
+
+II. Dữ liệu trong file này được viết theo định dạng sau:
+	<thuộc tính> : <giá trị>
+Ví dụ: 	NumberofQuestions : 40
+Thuộc tính không phân biệt hoa thường
+Có thể viết nhiều khoảng trắng để dễ đọc giữa thuộc tính và dấu ":", giá trị và dấu ":"
+Ví dụ : NumberOfQuestions     :    40
+	Question_1	      :    huy đẹp trai là ai?
+
+III. Có các loại thuộc tính và giá trị sau:
+1. 			NumberOfQuestions   :  <một số nguyên>
+	- Đây là cặp phần tử bắt buộc duy nhất, xác định số lượng câu hỏi trong trò chơi
+
+2. 			Question_i		: <câu hỏi>
+	- Phần tử này dùng để xác định câu hỏi thứ i, 1 <= i <= số lượng câu hỏi
+	- Ví dụ:  Question_1 : huy đẹp trai là ai?
+
+3. 			Answer_i		: <câu trả lời>
+	- Tương tự question_i, phần tử này xác định câu trả lời cho câu hỏi thứ i
+
+4. 			SoundPath_i		: <đường dẫn>
+	- Xác định đường dẫn đến file âm thanh của câu hỏi thứ i
+	- Nếu bỏ trống thì không phát âm thanh
+	- File âm thanh phải là file *.mp3 hoặc *.wav
+
+5.			Team_i			: <tên team i>
+	- Xác định tên team thứ i, i = 1 hoặc i = 2
+	- Nếu bỏ trống, sẽ dùng tên mặc định
+
+6.			SoundPath		: <đường dẫn đến thư mục chứa các file âm thanh>
+	- Đây là cách nhanh chóng để import toàn bộ file âm thanh từ một thư mục mà không cần nhập từng dòng
+	- Tạo một thư mục chứa các file âm thanh với cấu trúc: file âm thanh cho câu hỏi i có dạng i.ext (mặc định ext = mp3)
+	- Ví dụ ta có thư mục sau:
+		+ E:\Sound với các file [1.mp3, 2.mp3, ...] thì ta sử dụng cấu trúc
+			SoundPath		: E:\Sound
+		để import toàn bộ file âm thanh đã có
+		+ Nếu không có file âm thanh thứ i trong thư mục, mặc định là câu hỏi sẽ không có âm thanh
+	- Ưu tiên lưu các file bằng thuộc tính số 4
+
+7. 			SoundExtension 		: <tên extension>
+	- Để đổi định dạng đọc file từ thuộc tính 6, ta thêm thuộc tính này, extension chỉ có thể là mp3 hoặc wav
+	- Ví dụ
+			SoundExtension		: wav
+	- Nếu không dùng thuộc tính 6, thuộc tính này vô giá trị
+
+8. Xem ví dụ mẫu từ file example.game
