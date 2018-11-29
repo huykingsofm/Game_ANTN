@@ -3,7 +3,7 @@
 #include <WindowsConstants.au3>
 
 Func __displayAbout()
-   $image = "E:\huykingsofm\card_ANTNLauncher.jpg"
+   $image = @ScriptDir & "/image/card_ANTNLauncher.jpg"
    $aRet = _GetWHI($image)
 
    $W_WINDOW = $aRet[0]

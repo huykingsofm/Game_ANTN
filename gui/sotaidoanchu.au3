@@ -424,10 +424,10 @@ Func start_sotaidoanchu($game)
 				  ContinueLoop
 			   ElseIf ($res = 0) Then	; res = 0, team answer correct
 				  $res = True
-				  SoundPlay(__getParentDir(@ScriptDir) & "\sound\win.mp3")
+				  SoundPlay(@ScriptDir & "\sound\win.mp3")
 			   Else						; res = 1, team answer incorrect
 				  $res = False
-				  SoundPlay(__getParentDir(@ScriptDir) & "\sound\lose.mp3")
+				  SoundPlay(@ScriptDir & "\sound\lose.mp3")
 			   EndIf
 			   ; change all status when any team answer the question, write it on log
 			   __execAction($res, $curTurn, $log, $tableSize, $i, $j)
