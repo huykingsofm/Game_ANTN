@@ -9,7 +9,7 @@
 
 
 Func __questionDialog($question, $ans, $soundPath)
-   $question = $question = Default ? "ĐIỀN CÂU HỎI HỘ ĐI" : $question
+   $question = $question = Default ? "CHƯA ĐIỀN CÂU HỎI" : $question
 
    $breakedQuestion = __breakText($question, 50)
    $breakedAnswer = __breakText($ans, 50)
@@ -75,7 +75,7 @@ Func __questionDialog($question, $ans, $soundPath)
 	  GUICtrlSetColor(-1, 0x0)
 	  GUICtrlSetBkColor(-1, $COLOR_WINDOW)
    Next
-   GUICtrlSetData($message[Int($nLine/2)], "Hello mother fucker !!!")
+   GUICtrlSetData($message[Int($nLine/2)], "BẤM QUESTION ĐỂ HIỆN CÂU HỎI!!!")
 
    $OK = GUICtrlCreateLabel("OK", $PX_OK, $PY_OK, $W_OK, $H_OK, BitOR($SS_CENTER,$SS_CENTERIMAGE, $WS_BORDER))
    GUICtrlSetFont(-1, 16, 400, 0, "Arial Bold")
@@ -150,7 +150,7 @@ Func __questionDialog($question, $ans, $soundPath)
 			If $flagSwitch = 0 Then
 			   If ($ans = Default) Then
 				  Sleep($SOFT_TIME)
-				  __displayNotification($__NOTIFY_ERROR, "BỚT NGÁO ĐÊ" , "Có Câu Trả Lời Đéo")
+				  __displayNotification($__NOTIFY_ERROR, ":(" , "Chưa điền câu trả lời")
 			   Else
 				  For $i = 1 To $nLine
 					 If $i <= $breakedAnswer[0] Then
@@ -181,7 +181,7 @@ Func __questionDialog($question, $ans, $soundPath)
 		 Case $sound
 			If $soundPath = Default Then
 			   Sleep($SOFT_TIME)
-			   __displayNotification($__NOTIFY_ERROR, "BỚT NGÁO ĐÊ" , "Có Cài Âm Thanh Đâu Mà Phát -_-")
+			   __displayNotification($__NOTIFY_ERROR, ":(" , "Chưa thêm âm thanh")
 			Else
 			   _SoundPlay($aSound)
 			EndIf
