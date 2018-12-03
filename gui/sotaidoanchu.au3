@@ -419,7 +419,7 @@ Func start_sotaidoanchu($game)
 
 			   ; If user click on a cell, open Question Dialog in questionDialog.au3
 			   $id = $i * $tableSize + $j + 1
-			   $res = __questionDialog($game[$id][0], $game[$id][1], $game[$id][2])
+			   $res = __questionDialog($id, $game[$id][0], $game[$id][1], $game[$id][2])
 			   If $res = 2 Then			; res = 2, question have not opened yet ---> ignore
 				  ContinueLoop
 			   ElseIf ($res = 0) Then	; res = 0, team answer correct

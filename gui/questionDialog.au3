@@ -8,7 +8,7 @@
 #include <array.au3>
 
 
-Func __questionDialog($question, $ans, $soundPath)
+Func __questionDialog($id, $question, $ans, $soundPath)
    $question = $question = Default ? "CHƯA ĐIỀN CÂU HỎI" : $question
 
    $breakedQuestion = __breakText($question, 50)
@@ -75,7 +75,7 @@ Func __questionDialog($question, $ans, $soundPath)
 	  GUICtrlSetColor(-1, 0x0)
 	  GUICtrlSetBkColor(-1, $COLOR_WINDOW)
    Next
-   GUICtrlSetData($message[Int($nLine/2)], "BẤM QUESTION ĐỂ HIỆN CÂU HỎI!!!")
+   GUICtrlSetData($message[Int($nLine/2)], "CÂU HỎI SỐ " & $id)
 
    $OK = GUICtrlCreateLabel("OK", $PX_OK, $PY_OK, $W_OK, $H_OK, BitOR($SS_CENTER,$SS_CENTERIMAGE, $WS_BORDER))
    GUICtrlSetFont(-1, 16, 400, 0, "Arial Bold")
