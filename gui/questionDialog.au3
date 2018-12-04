@@ -7,7 +7,6 @@
 #include "DisplayNotification.au3"
 #include <array.au3>
 
-
 Func __questionDialog($id, $question, $ans, $soundPath)
    $question = $question = Default ? "CHƯA ĐIỀN CÂU HỎI" : $question
 
@@ -53,6 +52,11 @@ Func __questionDialog($id, $question, $ans, $soundPath)
    $PX_WINDOW = ($SCREEN[2] - $W_WINDOW) / 2
    $PY_WINDOW = ($SCREEN[3] - $H_WINDOW) / 2
 
+   $W_TIMER = 75
+   $H_TIMER = 75
+   $X_TIMER = $W_WINDOW - $W_TIMER - 5
+   $Y_TIMER = 5
+
 
    Local $COLOR_BUTTON = 0xDDDDDD
 
@@ -67,6 +71,11 @@ Func __questionDialog($id, $question, $ans, $soundPath)
    GUICtrlSetFont(-1, 22, 400, 0, "Arial Bold")
    GUICtrlSetColor(-1, 0x000000)
    GUICtrlSetBkColor(-1, $COLOR_WINDOW)
+
+   $Timer = GUICtrlCreateLabel("10", $X_TIMER, $Y_TIMER, $W_TIMER, $H_TIMER, BitOR($SS_CENTER,$SS_CENTERIMAGE))
+   GUICtrlSetFont(-1, 12, 400, 0, "Arial Bold")
+   GUICtrlSetColor(-1, 0x0)
+   GUICtrlSetBkColor(-1, 0xAAAAAA)
 
    Local $message[$nLine]
    For $i = 0 To $nLine - 1
@@ -113,11 +122,27 @@ Func __questionDialog($id, $question, $ans, $soundPath)
    $flagSwitch = 1
    $flagShowed = 0
 
+   $bTimer = False;
+
+   $time = 100000
+   $clock = 0.5
+
    If $soundPath <> "" Then
 	  $aSound = _SoundOpen($soundPath)
    EndIf
 
    While 1
+
+	  If ($bTimer) Then
+		 $time = $time - $clock
+	  EndIf
+
+	  If ($bTimer And $time >= 0 And Int($time/10000) = $time/10000) Then
+		 GUICtrlSetData($timer, Int($time/10000))
+	  EndIf
+
+
+
 	  $cursor = GUIGetCursorInfo($dialog)
 
 	  __eventOnCover($OK, $cursor, $COLOR_BUTTON, $PX_OK, $PY_OK, $W_OK, $H_OK, 16, True, $fOverOK)
@@ -165,6 +190,7 @@ Func __questionDialog($id, $question, $ans, $soundPath)
 			   EndIf
 			   Sleep($SOFT_TIME)
 			Else
+			   $bTimer = True;
 			   For $i = 1 To $nLine
 				  If $i <= $breakedQuestion[0] Then
 					 GUICtrlSetData($message[$i - 1], $breakedQuestion[$i])
